@@ -1,5 +1,6 @@
 package friendlyrobot.nyc.cupidtest
 
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
@@ -15,7 +16,8 @@ data class MatchItem (
 
 @JsonClass(generateAdapter = true)
 data class Photo(
-    val full_paths: Paths
+    @Json(name ="full_paths")
+    val paths: Paths
 )
 
 @JsonClass(generateAdapter = true)

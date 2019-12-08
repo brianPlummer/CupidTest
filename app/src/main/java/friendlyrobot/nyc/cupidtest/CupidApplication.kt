@@ -1,0 +1,15 @@
+package friendlyrobot.nyc.cupidtest
+
+import android.app.Application
+import friendlyrobot.nyc.cupidtest.di.ApplicationComponent
+import friendlyrobot.nyc.cupidtest.di.DaggerApplicationComponent
+
+class CupidApplication : Application() {
+
+    lateinit var applicationComponent: ApplicationComponent
+
+    override fun onCreate() {
+        super.onCreate()
+        applicationComponent =  DaggerApplicationComponent.builder().build()
+    }
+}

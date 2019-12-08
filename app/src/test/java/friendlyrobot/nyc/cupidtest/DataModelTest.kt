@@ -14,7 +14,7 @@ class DataModelTest {
         val matchResponse = moshi.adapter<DataModel>(DataModel::class.java).fromJson(SAMPLE_JSON)
         assertThat(matchResponse).isNotNull()
         assertThat(matchResponse?.data?.size).isEqualTo(18)
-        assertThat(matchResponse?.data?.getOrNull(0)?.photo?.full_paths?.medium)
+        assertThat(matchResponse?.data?.getOrNull(0)?.photo?.paths?.medium)
             .isEqualTo("https://k2.okccdn.com/php/load_okc_image.php/images/0x0/120x120/36x36/684x684/0/15743311334557165678.jpg")
     }
 }
