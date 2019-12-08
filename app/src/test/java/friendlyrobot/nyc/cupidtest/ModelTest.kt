@@ -4,18 +4,27 @@ import com.squareup.moshi.Moshi
 import org.junit.Test
 
 import com.google.common.truth.Truth.assertThat
+import friendlyrobot.nyc.cupidtest.model.DataModel
 
-class DataModelTest {
+class ModelTest {
+
+    private val moshi = Moshi.Builder().build()
+    val matchResponse by lazy { moshi.adapter<DataModel>(DataModel::class.java).fromJson(SAMPLE_JSON) }
 
     @Test
     fun `can we parse our data model from sample json?`() {
 
-        val moshi = Moshi.Builder().build()
-        val matchResponse = moshi.adapter<DataModel>(DataModel::class.java).fromJson(SAMPLE_JSON)
         assertThat(matchResponse).isNotNull()
         assertThat(matchResponse?.data?.size).isEqualTo(18)
-        assertThat(matchResponse?.data?.getOrNull(0)?.photo?.paths?.medium)
+        val firstMatch = matchResponse?.data?.getOrNull(0)
+        assertThat(firstMatch).isNotNull()
+        assertThat(firstMatch?.photo?.paths?.medium)
             .isEqualTo("https://k2.okccdn.com/php/load_okc_image.php/images/0x0/120x120/36x36/684x684/0/15743311334557165678.jpg")
+        assertThat(firstMatch?.match).isEqualTo(8715)
+        assertThat(firstMatch?.username).isEqualTo("bklyn2356")
+        assertThat(firstMatch?.cityName).isEqualTo("Brooklyn")
+        assertThat(firstMatch?.stateCode).isEqualTo("NY")
+        assertThat(firstMatch?.age).isEqualTo(27)
     }
 }
 

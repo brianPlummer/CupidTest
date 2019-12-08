@@ -1,4 +1,4 @@
-package friendlyrobot.nyc.cupidtest
+package friendlyrobot.nyc.cupidtest.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -11,7 +11,14 @@ data class DataModel (
 
 @JsonClass(generateAdapter = true)
 data class MatchItem (
-    val photo: Photo
+    val photo: Photo,
+    val username: String,
+    @Json(name ="city_name")
+    val cityName: String,
+    @Json(name ="state_code")
+    val stateCode: String,
+    val match: Long,
+    val age: Int
 )
 
 @JsonClass(generateAdapter = true)
