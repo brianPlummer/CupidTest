@@ -10,6 +10,8 @@ class CupidApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        applicationComponent =  DaggerApplicationComponent.builder().build()
+        applicationComponent =  DaggerApplicationComponent.builder()
+            .withUrl("https://www.okcupid.com/")
+            .build()
     }
 }

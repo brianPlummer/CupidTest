@@ -20,9 +20,9 @@ object ApplicationModule {
     @JvmStatic
     @Provides
     @Singleton
-    fun provideRetrofit() = Retrofit.Builder()
+    fun provideRetrofit(endpoint: String) = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create())
-        .baseUrl("https://www.okcupid.com/")
+        .baseUrl(endpoint)
         .build()
 
     @JvmStatic

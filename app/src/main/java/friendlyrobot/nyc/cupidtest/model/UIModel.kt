@@ -10,7 +10,7 @@ data class UIModel(
 fun MatchItem.toUIModel() : UIModel {
     val uiModel = UIModel(photo.paths.medium,
         username,
-        "$age /u2022 $cityName, $stateCode",
+        "$age \u2022 $cityName, $stateCode",
         "47% Match")
     return uiModel
 }
