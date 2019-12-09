@@ -12,6 +12,7 @@ class CupidApplication : Application() {
         super.onCreate()
         applicationComponent =  DaggerApplicationComponent.builder()
             .withUrl("https://www.okcupid.com/")
+            .application(this)
             .build()
     }
 }

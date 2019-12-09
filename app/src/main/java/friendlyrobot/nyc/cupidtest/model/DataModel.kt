@@ -17,7 +17,7 @@ data class MatchItem (
     val cityName: String,
     @Json(name ="state_code")
     val stateCode: String,
-    val match: Long,
+    val match: Int,
     val age: Int
 )
 
