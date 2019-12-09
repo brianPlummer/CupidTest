@@ -4,14 +4,15 @@ data class UIModel(
     val imageUrl: String,
     val username: String,
     val agePlace: String,
-    val match: String
+    val match: String,
+    val slected: Boolean
 )
 
 fun MatchItem.toUIModel() : UIModel {
-    val uiModel = UIModel(photo.paths.medium,
+    val uiModel = UIModel(photo.paths.large,
         username,
         "$age \u2022 $cityName, $stateCode",
-        "47% Match")
+        "47% Match", false)
     return uiModel
 }
 

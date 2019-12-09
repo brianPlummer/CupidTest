@@ -4,10 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@android:color/holo_blue_bright">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
+        android:layout_marginStart="@dimen/item_margin_half"
+        android:layout_marginEnd="@dimen/item_margin_half"
+        android:layout_marginTop="@dimen/item_margin_half"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 

@@ -1,5 +1,6 @@
 package friendlyrobot.nyc.cupidtest
 
+import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -39,8 +40,11 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<DataModel>, response: Response<DataModel>) {
                 Log.e("onResponse", "NumFound: ${response.body()?.data?.size}")
                 findViewById<RecyclerView>(R.id.recyclerView)?.apply {
+
+                    addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.item_margin).toInt()))
                     layoutManager = GridLayoutManager(this@MainActivity, 2)
                     response.body()?.toUIList()?.let{ adapter = MatchAdapter(it, imageLoader) }
+
                 }
             }
         })
@@ -64,5 +68,17 @@ class MatchViewHolder(view: View, private val imageLoader: ImageLoader) : Recycl
         imageLoader.loadImage(uiModel.imageUrl, itemView.findViewById(R.id.matchImage))
         itemView.findViewById<TextView>(R.id.matchName).text = uiModel.username
         itemView.findViewById<TextView>(R.id.agePlace).text = uiModel.agePlace
+        itemView.findViewById<TextView>(R.id.percentMatch).text = uiModel.match
+    }
+}
+
+class MarginItemDecoration(private val spaceHeight: Int) : RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(outRect: Rect, view: View,
+                                parent: RecyclerView, state: RecyclerView.State) {
+        with(outRect) {
+            left =  spaceHeight / 2
+            right = spaceHeight / 2
+            bottom = spaceHeight
+        }
     }
 }

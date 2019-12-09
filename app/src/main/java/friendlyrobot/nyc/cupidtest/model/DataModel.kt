@@ -29,6 +29,7 @@ data class Photo(
 
 @JsonClass(generateAdapter = true)
 data class Paths (
-    val medium: String
+    val medium: String,
+    val large: String
 )
 
