@@ -5,7 +5,7 @@ data class UIModel(
     val username: String,
     val agePlace: String,
     val match: String,
-    val slected: Boolean
+    val selected: Boolean
 )
 
 fun MatchItem.toUIModel() : UIModel {

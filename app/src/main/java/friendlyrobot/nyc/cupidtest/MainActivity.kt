@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import friendlyrobot.nyc.cupidtest.img.ImageLoader
@@ -69,6 +71,11 @@ class MatchViewHolder(view: View, private val imageLoader: ImageLoader) : Recycl
         itemView.findViewById<TextView>(R.id.matchName).text = uiModel.username
         itemView.findViewById<TextView>(R.id.agePlace).text = uiModel.agePlace
         itemView.findViewById<TextView>(R.id.percentMatch).text = uiModel.match
+
+        val notSelectd = ContextCompat.getColor(itemView.context, android.R.color.white)
+        val selected = ContextCompat.getColor(itemView.context, R.color.backgroundSelected)
+        val color = if (uiModel.selected) selected else notSelectd
+        itemView.findViewById<CardView>(R.id.cardView).setCardBackgroundColor(color)
     }
 }
 
