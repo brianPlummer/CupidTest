@@ -4,11 +4,11 @@ import android.app.Application
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
-import friendlyrobot.nyc.cupidtest.SearchService
 import friendlyrobot.nyc.cupidtest.img.ImageLoader
 import friendlyrobot.nyc.cupidtest.img.ImageLoaderPicasso
 import friendlyrobot.nyc.cupidtest.model.MatchDao
 import friendlyrobot.nyc.cupidtest.model.MatchDatabase
+import friendlyrobot.nyc.cupidtest.network.SearchService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton

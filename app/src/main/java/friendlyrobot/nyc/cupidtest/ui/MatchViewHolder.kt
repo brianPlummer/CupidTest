@@ -15,14 +15,19 @@ class MatchViewHolder(private val matchesModel: MatchesModel, view: View, privat
         imageLoader.loadImage(matchValue.imageUrl, itemView.findViewById(R.id.matchImage))
         itemView.findViewById<TextView>(R.id.matchName).text = matchValue.username
         itemView.findViewById<TextView>(R.id.agePlace).text = "${matchValue.age} \u2022 ${matchValue.city}, ${matchValue.state}"
-        itemView.findViewById<TextView>(R.id.percentMatch).text = "47% Match"//
+        itemView.findViewById<TextView>(R.id.percentMatch).text = "47% Match"
 
-        val notSelectd = ContextCompat.getColor(itemView.context, android.R.color.white)
-        val selected = ContextCompat.getColor(itemView.context, R.color.backgroundSelected)
-        val color = if (matchValue.selected) selected else notSelectd
-        itemView.findViewById<CardView>(R.id.cardView).setCardBackgroundColor(color)
+        itemView.findViewById<CardView>(R.id.cardView).setCardBackgroundColor(selectColor(matchValue.selected))
         itemView.setOnClickListener {
             matchesModel.update(matchValue.copy(selected = !matchValue.selected))
+        }
+    }
+
+    private fun selectColor(selected: Boolean) : Int {
+        return if (selected) {
+            ContextCompat.getColor(itemView.context, R.color.backgroundSelected)
+        } else {
+            ContextCompat.getColor(itemView.context, android.R.color.white)
         }
     }
 }

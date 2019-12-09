@@ -1,4 +1,4 @@
-package friendlyrobot.nyc.cupidtest
+package friendlyrobot.nyc.cupidtest.di
 
 import android.app.Application
 import friendlyrobot.nyc.cupidtest.di.ApplicationComponent

@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import friendlyrobot.nyc.cupidtest.CupidApplication
+import friendlyrobot.nyc.cupidtest.di.CupidApplication
 import friendlyrobot.nyc.cupidtest.R
 import friendlyrobot.nyc.cupidtest.img.ImageLoader
 import friendlyrobot.nyc.cupidtest.model.MatchValue

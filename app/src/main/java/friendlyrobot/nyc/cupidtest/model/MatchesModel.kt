@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import friendlyrobot.nyc.cupidtest.CupidApplication
-import friendlyrobot.nyc.cupidtest.SearchService
+import friendlyrobot.nyc.cupidtest.di.CupidApplication
+import friendlyrobot.nyc.cupidtest.network.SearchService
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
