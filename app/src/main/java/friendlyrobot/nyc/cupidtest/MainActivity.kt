@@ -2,41 +2,53 @@ package friendlyrobot.nyc.cupidtest
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import friendlyrobot.nyc.cupidtest.img.ImageLoader
-import friendlyrobot.nyc.cupidtest.model.MatchValue
-import friendlyrobot.nyc.cupidtest.model.MatchesModel
-import friendlyrobot.nyc.cupidtest.ui.MarginItemDecoration
-import friendlyrobot.nyc.cupidtest.ui.MatchAdapter
-import javax.inject.Inject
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
+import friendlyrobot.nyc.cupidtest.fragment.MatchPercentFragment
+import friendlyrobot.nyc.cupidtest.fragment.SpecialBlendFragment
 
 class MainActivity : AppCompatActivity() {
 
-    @Inject
-    protected lateinit var imageLoader: ImageLoader
-
-    protected lateinit var matchAdapter: MatchAdapter
+    private var matchesPagerAdapter: MatchesPagerAdapter? = null
+    private var viewPager: ViewPager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        (application as CupidApplication).applicationComponent.inject(this)
 
-        val matchesModel = ViewModelProviders.of(this)
-            .get(MatchesModel::class.java)
-        matchAdapter = MatchAdapter(imageLoader, matchesModel)
+        matchesPagerAdapter = MatchesPagerAdapter(supportFragmentManager)
+        viewPager = findViewById(R.id.pager);
+        viewPager?.adapter = matchesPagerAdapter
+        val tabLayout = findViewById<TabLayout>(R.id.tab_layout)
+        tabLayout.setupWithViewPager(viewPager)
+    }
 
-        findViewById<RecyclerView>(R.id.recyclerView)?.apply {
-            addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.item_margin).toInt()))
-            layoutManager = GridLayoutManager(this@MainActivity, 2)
-            adapter = matchAdapter
-        }
-
-        matchesModel.getMatches().observe(this, Observer<List<MatchValue>> { matches ->
-            matchAdapter.addMatches(matches)
-        })
+    override fun onDestroy() {
+        viewPager = null
+        matchesPagerAdapter = null
+        super.onDestroy()
     }
 }
+
+class MatchesPagerAdapter(fm: FragmentManager) :
+    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+
+    override fun getItem(position: Int) = when(position) {
+        0 -> SpecialBlendFragment()
+        1 -> MatchPercentFragment()
+        else -> Fragment()
+    }
+
+    override fun getCount() = 2
+
+    override fun getPageTitle(position: Int) = when(position) {
+        0 -> "SPECIAL BLEND"
+        1 -> "MATCH %"
+        else -> ""
+    }
+}
+
+
