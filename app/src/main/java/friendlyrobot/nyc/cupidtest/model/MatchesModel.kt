@@ -41,7 +41,7 @@ class MatchesModel (application: Application) : AndroidViewModel(application), C
             matchDao.update(matchValue)
             val uiMatches = matchDao.getAll()
             withContext(Dispatchers.Main) {
-                matches.postValue(uiMatches)
+                matches.value = uiMatches
             }
         }
     }
@@ -53,7 +53,7 @@ class MatchesModel (application: Application) : AndroidViewModel(application), C
                 response.body()?.toMatchValueList()?.let { matchDao.saveAll(it) }
                 val uiMatches = matchDao.getAll()
                 withContext(Dispatchers.Main) {
-                    matches.postValue(uiMatches)
+                    matches.value = uiMatches
                 }
             }
         }
