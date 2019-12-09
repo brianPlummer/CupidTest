@@ -2,7 +2,6 @@ package friendlyrobot.nyc.cupidtest.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import friendlyrobot.nyc.cupidtest.R
 import friendlyrobot.nyc.cupidtest.img.ImageLoader
@@ -22,7 +21,8 @@ class MatchAdapter(private val imageLoader: ImageLoader,
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        MatchViewHolder(matchesModel, LayoutInflater.from(parent.context).inflate(R.layout.item_match, parent, false), imageLoader)
+        MatchViewHolder(matchesModel, LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_match, parent, false), imageLoader)
 
     override fun getItemCount() = matches.size
 

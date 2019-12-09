@@ -1,8 +1,6 @@
 package friendlyrobot.nyc.cupidtest.di
 
 import android.app.Application
-import friendlyrobot.nyc.cupidtest.di.ApplicationComponent
-import friendlyrobot.nyc.cupidtest.di.DaggerApplicationComponent
 
 class CupidApplication : Application() {
 
